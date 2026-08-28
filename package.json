@@ -1,0 +1,10 @@
+{
+  "name": "fuwatto-sheep-memory",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node build.mjs",
+    "check": "node --check js/deck.js && node --check js/game.js && node --check js/storage.js && node --check js/sound.js && node --check js/main.js",
+    "deploy": "npm run build && npx wrangler deploy"
+  }
+}

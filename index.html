@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#edf4f1">
+  <title>ふわっとひつじの神経衰弱</title>
+  <link rel="stylesheet" href="./css/reset.css?v=20260824-03">
+  <link rel="stylesheet" href="./css/style.css?v=20260824-03">
+  <link rel="stylesheet" href="./css/card.css?v=20260824-03">
+</head>
+<body>
+  <main class="app-shell">
+    <header class="site-header" aria-label="ゲーム操作">
+      <a class="brand" href="#top" data-action="go-top">FUWATTO SHEEP <span>MEMORY</span></a>
+      <div class="header-actions">
+        <button class="icon-button" type="button" data-action="open-howto" aria-haspopup="dialog">遊び方</button>
+        <button class="icon-button sound-button" type="button" data-action="toggle-sound" aria-pressed="true">SOUND ON</button>
+      </div>
+    </header>
+
+    <section class="screen top-screen is-active" id="top" aria-labelledby="game-title">
+      <div class="hero-copy">
+        <p class="eyebrow">ORIGINAL PLAYING CARDS / GAME 01</p>
+        <h1 id="game-title">ふわっとひつじの<br><em>神経衰弱</em></h1>
+        <p class="lead">同じ数字、同じ色のカードをそろえよう。<br>かわいいオリジナルトランプで遊ぶ、ひとり用メモリーゲーム。</p>
+        <div class="difficulty-panel" aria-label="難易度選択">
+          <p>DIFFICULTY</p>
+          <div class="difficulty-options" role="radiogroup">
+            <button type="button" role="radio" data-difficulty="easy" aria-checked="false">EASY <small>8 PAIRS</small></button>
+            <button type="button" role="radio" data-difficulty="normal" aria-checked="true">NORMAL <small>12 PAIRS</small></button>
+            <button type="button" role="radio" data-difficulty="hard" aria-checked="false">HARD <small>18 PAIRS</small></button>
+            <button type="button" role="radio" data-difficulty="full" aria-checked="false">FULL DECK <small>27 PAIRS</small></button>
+          </div>
+          <button class="primary-button" type="button" data-action="start-game">ゲームをはじめる <span aria-hidden="true">→</span></button>
+        </div>
+      </div>
+      <div class="hero-cards" aria-hidden="true">
+        <img class="hero-card card-one" src="./assets/card-images/H_Q.webp?v=20260824-03" alt="">
+        <img class="hero-card card-two" src="./assets/card-images/S_3.webp?v=20260824-03" alt="">
+        <img class="hero-back" src="./assets/card-back.svg" alt="">
+      </div>
+      <aside class="best-summary" aria-label="ベストスコア">
+        <p>BEST SCORE <span data-best-label>NORMAL</span></p>
+        <strong data-best-summary>--:-- / -- FLIPS</strong>
+      </aside>
+    </section>
+
+    <section class="screen game-screen" id="game">
+      <div class="game-toolbar">
+        <div class="game-stats" aria-label="ゲーム進行状況">
+          <div><span>TIME</span><strong data-stat="time">00:00</strong></div>
+          <div><span>FLIPS</span><strong data-stat="flips">0</strong></div>
+          <div><span>MATCH</span><strong data-stat="matches">0 / 12</strong></div>
+        </div>
+        <div class="game-controls">
+          <button class="icon-button" type="button" data-action="pause">一時停止</button>
+          <button class="icon-button" type="button" data-action="go-top">トップへ</button>
+        </div>
+      </div>
+      <div class="board-wrap">
+        <div class="game-board" data-board aria-label="神経衰弱のカード一覧"></div>
+        <p class="match-message" data-message role="status"></p>
+      </div>
+    </section>
+  </main>
+
+  <dialog class="modal" data-modal="howto" aria-labelledby="howto-title">
+    <button class="modal-close" type="button" data-action="close-modal" aria-label="閉じる">×</button>
+    <p class="eyebrow">HOW TO PLAY</p>
+    <h2 id="howto-title">遊び方</h2>
+    <p>2枚めくって、<strong>同じ数字・同じ色</strong>の組み合わせを見つけよう。</p>
+    <div class="rule-examples">
+      <div><span class="black">♠ A ＋ ♣ A</span><small>黒の同じ数字でペア</small></div>
+      <div><span class="red">♥ 7 ＋ ♦ 7</span><small>赤の同じ数字でペア</small></div>
+      <div><span>JOKER ＋ JOKER</span><small>ジョーカー同士でペア</small></div>
+    </div>
+    <p class="hint">すべてのペアをそろえたらクリアです。</p>
+  </dialog>
+
+  <dialog class="modal pause-modal" data-modal="pause" aria-labelledby="pause-title">
+    <p class="eyebrow">PAUSED</p><h2 id="pause-title">一時停止中</h2>
+    <div class="modal-actions"><button class="primary-button" type="button" data-action="resume">ゲームに戻る</button><button class="text-button" type="button" data-action="go-top">トップへ戻る</button></div>
+  </dialog>
+
+  <dialog class="modal result-modal" data-modal="result" aria-labelledby="result-title">
+    <p class="eyebrow">ALL PAIRS FOUND</p><h2 id="result-title">CLEAR!</h2>
+    <p class="new-record" data-new-record hidden>NEW RECORD!</p>
+    <div class="result-score"><strong data-result="rank">A</strong><dl><div><dt>DIFFICULTY</dt><dd data-result="difficulty">NORMAL</dd></div><div><dt>TIME</dt><dd data-result="time">00:00</dd></div><div><dt>FLIPS</dt><dd data-result="flips">0</dd></div></dl></div>
+    <div class="modal-actions"><button class="primary-button" type="button" data-action="play-again">もう一度遊ぶ</button><button class="text-button" type="button" data-action="go-top">難易度を変更</button></div>
+  </dialog>
+  <script type="module" src="./js/main.js?v=20260824-03"></script>
+</body>
+</html>
